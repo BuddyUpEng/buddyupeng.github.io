@@ -1,0 +1,20 @@
+{
+  "name": "BuddysCo",
+  "short_name": "BuddysCo",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#F6F9FA",
+  "theme_color": "#30C6DF",
+  "icons": [
+    {
+      "src": "images/brand/buddysco-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/brand/buddysco-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

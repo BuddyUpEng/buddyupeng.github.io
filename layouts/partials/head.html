@@ -1,0 +1,48 @@
+<head>
+  <meta charset="utf-8" />
+  <title>{{ .Title }}</title>
+
+
+  {{ "<!-- SEO optimisation meta -->" | safeHTML }}
+  <meta name="title" content="Group Study">
+  <meta name="description" content="Study in groups for best retention. Best Peer to Peer learning App. Try it today. We have special Beta Launch Offers.">
+  <meta name="keywords" content="Group Study, Student, Team Work, Study Online, Student Group">
+  <meta name="robots" content="index, follow">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="language" content="English">
+
+  {{ "<!-- mobile responsive meta -->" | safeHTML }}
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  {{ "<!-- Slick Carousel -->" | safeHTML }}
+  <link rel="stylesheet" href="{{ "plugins/slick/slick.css" | absURL }}" />
+  <link rel="stylesheet" href="{{ "plugins/slick/slick-theme.css" | absURL }}" />
+  {{ "<!-- Font Awesome -->" | safeHTML }}
+  <link rel="stylesheet" href="{{ "plugins/font-awesome/css/font-awesome.min.css" | absURL }}" />
+
+  {{ "<!-- Magnific Popup -->" | safeHTML }}
+  <link rel="stylesheet" href="{{"plugins/magnafic-popup/magnific-popup.css" | absURL }}" />
+
+  {{ "<!-- Stylesheets -->" | safeHTML }}
+  {{ $style := resources.Get "scss/style.scss" | resources.ToCSS | minify }}
+  <link href="{{ $style.Permalink }}" rel="stylesheet" />
+
+  <link rel="stylesheet" href="{{ "css/brand.css" | relURL }}" />
+  <meta name="theme-color" content="#30C6DF" />
+  <link rel="manifest" href="{{ "site.webmanifest" | relURL }}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "images/brand/apple-touch-icon.png" | relURL }}" />
+  {{ "<!--Favicon-->" | safeHTML }}
+  <link rel="shortcut icon" href="{{ "images/brand/favicon.ico" | relURL }}" type="image/x-icon" />
+  <link rel="icon" href="{{ "images/brand/favicon-32.png" | relURL }}" sizes="32x32" type="image/png" />
+  {{ with site.Params.googleAnalytics }}
+  {{ "<!-- Google Analytics -->" | safeHTML }}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', '{{ . }}');
+  </script>
+  {{ end }}
+</head>

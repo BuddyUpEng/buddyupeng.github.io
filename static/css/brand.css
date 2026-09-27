@@ -1,0 +1,13 @@
+/* Shared ambition identity. Source artwork: approved BuddysCo app concept 09. */
+:root { --buddy-cyan: #30C6DF; --buddy-orange: #FE8034; --buddy-ink: #073942; --buddy-focus: #B84C08; }
+.buddy-brand, .navbar .navbar-brand.buddy-brand { display: inline-flex; align-items: center; gap: 12px; color: #172B30; font: 800 28px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: -1px; text-decoration: none; }
+.navbar .navbar-brand.buddy-brand img, .buddy-brand img { width: 48px; height: 48px; flex: 0 0 48px; object-fit: contain; border-radius: 11px; }
+.buddy-brand--footer { margin: 0 0 24px; color: #fff; font-size: 34px; }
+.buddy-brand--footer:hover { color: #fff; }
+.buddy-brand--footer img { width: 64px; height: 64px; flex-basis: 64px; border-radius: 15px; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--buddy-focus); outline-offset: 4px; }
+.footer a:focus-visible, .footer button:focus-visible { outline-color: var(--buddy-orange); }
+.btn-primary { background-color: var(--buddy-cyan); border-color: var(--buddy-cyan); color: var(--buddy-ink); }
+.btn-primary:hover, .btn-primary:focus, .btn-primary:not(:disabled):not(.disabled):active { background-color: #65D5E7; border-color: #65D5E7; color: var(--buddy-ink); }
+.top-title { color: #126B7D; }
+@media (max-width: 575px) { .navbar .navbar-brand.buddy-brand { gap: 8px; font-size: 24px; } .navbar .navbar-brand.buddy-brand img { width: 40px; height: 40px; flex-basis: 40px; } }
