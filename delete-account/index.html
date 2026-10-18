@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com https://www.google.com https://www.recaptcha.net; style-src 'self'; img-src 'self' data: https://www.gstatic.com; connect-src https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://us-central1-buddysco-mobile-app.cloudfunctions.net https://www.google.com https://www.gstatic.com https://www.recaptcha.net; frame-src https://www.google.com https://recaptcha.google.com https://www.recaptcha.net; base-uri 'none'; form-action 'self'; object-src 'none'">
+  <meta name="description" content="Request deletion of your BuddysCo account and associated app data. Sign in securely or contact support for help.">
+  <title>Delete your account · BuddysCo</title>
+  <link rel="stylesheet" href="/delete-account/account.css">
+  <script type="module" src="/delete-account/delete-account.mjs"></script>
+</head>
+<body>
+<header><a class="brand" href="/">BuddysCo</a><nav aria-label="Main"><a href="/support/">Support</a><a href="/privacy_policy/">Privacy</a></nav></header>
+<main>
+  <p class="eyebrow">Account and privacy</p><h1>Delete your account</h1>
+  <p>You can request deletion here without reinstalling BuddysCo. Sign in to your existing account, review what happens, then confirm.</p>
+  <section aria-labelledby="effects"><h2 id="effects">What deletion does</h2>
+    <ul><li>Removes your active account, profile, private tasks and drafts, assistant access, and identifiable uploads owned by your account.</li><li>Removes your membership and personal contribution data from shared spaces. Your authored notes, quizzes and templates are removed. Other members’ groups, work and progress remain; your messages become content-free placeholders.</li><li>Does not delete your Google or Zoom account or provider-hosted meeting. Manage those with the provider.</li></ul>
+    <p>Some anonymized shared records, safety reports, aggregate totals and security receipts can remain. Backup, storage soft-delete and service-log retention are separate from active app deletion. Older uploads without reliable ownership may need a verified support request. See the <a href="/privacy_policy/#deleting-your-account">full deletion details</a>.</p>
+  </section>
+  <p id="status" role="status" aria-live="polite">Loading secure sign-in…</p>
+  <noscript><p>JavaScript is needed for secure self-service sign-in. Email <a href="mailto:admin@buddysco.com">admin@buddysco.com</a> for help with an account-deletion request. Never send your password or an SMS verification code.</p></noscript>
+  <section id="login-section" aria-labelledby="login-title">
+    <h2 id="login-title">Sign in securely</h2>
+    <p>Use the sign-in method already linked to your account. This page keeps your session in memory; refreshing or closing it signs you out. It does not load the website’s analytics.</p>
+    <form id="email-form" method="post">
+      <fieldset id="email-fields" disabled><legend>Email and password</legend>
+        <label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="username" maxlength="254" required>
+        <label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button type="submit">Sign in with email</button>
+      </fieldset>
+    </form>
+    <details id="phone-details"><summary>Sign in with a phone number</summary>
+      <p>Google Firebase and reCAPTCHA verify your number and protect this form from abuse. Standard SMS rates may apply.</p>
+      <form id="phone-form" method="post"><fieldset id="phone-fields" disabled><legend>Request a verification code</legend>
+        <label for="phone">Phone number with country code</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 555 123 4567" required>
+        <div id="recaptcha-container"></div><button type="submit">Send verification code</button>
+      </fieldset></form>
+      <form id="code-form" method="post" hidden><fieldset id="code-fields" disabled><legend>Verify your phone</legend>
+        <label for="code">SMS verification code</label><input id="code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required>
+        <button type="submit">Verify and sign in</button>
+      </fieldset></form>
+    </details>
+  </section>
+  <section id="verification-section" aria-labelledby="verification-title" hidden>
+    <h2 id="verification-title">Phone verification cleanup</h2>
+    <p>Phone verification created a temporary sign-in record because this number did not have an existing account. We have not requested deletion of any BuddysCo app data.</p>
+    <p>If cleanup could not be confirmed, retry here. If the account changed or retry is unavailable, close this tab and contact <a href="mailto:admin@buddysco.com">admin@buddysco.com</a>. Do not send your verification code.</p>
+    <button id="retry-verification" type="button" disabled>Retry verification cleanup</button>
+  </section>
+  <section id="unverified-section" hidden><h2>Sign-in could not be verified</h2><p>No account deletion was requested. Close this tab to clear its sign-in session, then try again or contact <a href="mailto:admin@buddysco.com">admin@buddysco.com</a>.</p></section>
+  <section id="confirmation-section" aria-labelledby="confirm-title" hidden>
+    <h2 id="confirm-title">Confirm account deletion</h2><p id="account-label"></p>
+    <label class="check"><input id="confirm" type="checkbox"> <span>I understand that deleting my BuddysCo account is permanent and request removal of my account and associated app data as described above.</span></label>
+    <div class="actions"><button id="delete-button" class="danger" type="button" disabled>Delete my account</button><button id="sign-out" class="secondary" type="button">Sign out</button></div>
+    <p>Deletion can take time. A network error does not necessarily cancel a request. Keep this tab open to retry the same request if the result is uncertain.</p>
+  </section>
+  <section id="accepted-section" aria-labelledby="accepted-title" hidden><h2 id="accepted-title">Deletion requested</h2><p id="accepted-message"></p><p id="request-reference"></p></section>
+  <section><h2>Need help signing in?</h2><p>Email <a href="mailto:admin@buddysco.com?subject=BuddysCo%20account%20deletion">admin@buddysco.com</a> with the subject “BuddysCo account deletion”. Explain which account you need help with; we may need to verify ownership. Never send passwords, SMS codes, identity documents, or access tokens by email.</p></section>
+</main>
+<footer><a href="/support/">Support</a><a href="/privacy_policy/">Privacy policy</a><a href="/">BuddysCo home</a></footer>
+</body></html>
