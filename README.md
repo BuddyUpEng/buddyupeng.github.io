@@ -39,3 +39,21 @@ hugo server -t portio
 
 ### Hugo Github pages deployment
 Follow the steps mentioned [here](https://gohugo.io/hosting-and-deployment/hosting-on-github/).
+
+## Account deletion, support and community pages
+
+`static/delete-account/` is a standalone page so sign-in does not load the theme’s analytics or contact-form scripts. It uses Firebase JS 12.19.0 with in-memory authentication and the production web registration from the app. `deletion-core.mjs` contains the owner/confirmation/retry state machine; its injected test transport cannot be selected by a URL or browser flag in the shipped page. No credentials or generated site output should be committed.
+
+```sh
+node --test tests/*.test.mjs
+# Use the pinned Hugo 0.91.2 from the workflow; write output outside the checkout.
+hugo --minify --destination /absolute/path/to/local-site-output
+```
+
+Before publishing, deploy and accept `requestAccountDeletion` plus its worker and account-fence rules together. Verify `buddysco.com` (and `www.buddysco.com` if served) in production Firebase Auth authorized domains, existing email/password and phone sign-in providers, and phone SMS region policy. Never enable a test-auth bypass to exercise deletion. Test real service integration only with specifically authorized synthetic accounts; unit tests do not establish live SMS or deletion-worker completion.
+
+Firebase [phone sign-in creates an Auth record when none exists](https://docs.cloud.google.com/identity-platform/docs/reference/rest/v1/accounts/signInWithPhoneNumber); it has no supported existing-account-only flag. After phone ownership verification, the page checks [`getAdditionalUserInfo(result).isNewUser`](https://firebase.google.com/docs/reference/js/auth.additionaluserinfo). Only existing users reach the app-deletion checkbox. A new verification-only record is immediately rolled back with Firebase `deleteUser` against that exact new User, without calling the app-deletion endpoint. UID/object and generation guards prevent a changed account from being removed or signed out. An uncertain cleanup keeps a guarded retry and support instructions; it never claims removal succeeded. This works without depending on the project-wide signup-disable setting. There is no pre-verification account enumeration.
+
+The callable accepts exactly `{expectedUid, operationId, confirmed: true}` in `us-central1` and returns `{status: 'deleting' | 'complete', requestId}`. The first dispatch refreshes its ID token after interactive sign-in. A recent-login-required response asks the user to sign in again and retains the operation UUID in this tab. An uncertain retry keeps the same UUID and can use the existing valid ID token after account disabling; no new request is started. Auth changes invalidate pending responses, including an A-to-B-to-A switch. Accepted requests sign out; a failed local sign-out does not undo acceptance. Closing/reloading clears the in-memory sign-in and retry state. The backend recognizes an already recorded request for the same verified account.
+
+`/support/`, `/delete-account/` and `/community-guidelines/` are public static resources. Community guidelines version `2026-10-17` matches the app acknowledgement. Keep deletion and retention wording aligned with the backend’s `learning/ACCOUNT_DELETION.md`; do not promise a completion or support-response SLA. Publishing/merging the branch is a separate release action.

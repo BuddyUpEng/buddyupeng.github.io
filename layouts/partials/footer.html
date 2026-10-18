@@ -1,0 +1,81 @@
+<section class="footer" id="contact">
+	<div class="footer__background_shape">
+		<svg viewBox="0 0 1920 79">
+			<path d="M0 0h1920v79L0 0z" data-name="Path 1450" />
+		</svg>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="footer__cta">
+					<div class="shape-1">
+						<svg xmlns="http://www.w3.org/2000/svg" width="357" height="315.029" viewBox="0 0 357 315.029">
+							<path data-name="Path 1449"
+								d="M76.1-157.222C91.746-135.8 87.2-94.273 99.993-61.945c12.7 32.328 42.661 55.459 39.248 73.282-3.318 17.823-40.007 30.337-65.6 43.325-25.5 12.988-39.912 26.545-60.01 42.566-20.1 16.116-46.074 34.6-63.328 27.682-17.349-6.921-25.976-39.153-59.915-59.82s-93.1-29.768-105.325-51.478 22.373-56.028 43.609-93.949c21.331-37.921 29.2-79.35 53.563-96.793 24.459-17.444 65.414-10.9 103.9-6.921 38.396 3.982 74.326 5.404 89.965 26.829z"
+								transform="translate(217.489 188.626)" />
+						</svg>
+					</div>
+					<div class="shape-2">
+						<svg xmlns="http://www.w3.org/2000/svg" width="357" height="315.029" viewBox="0 0 357 315.029">
+							<path data-name="Path 1449"
+								d="M76.1-157.222C91.746-135.8 87.2-94.273 99.993-61.945c12.7 32.328 42.661 55.459 39.248 73.282-3.318 17.823-40.007 30.337-65.6 43.325-25.5 12.988-39.912 26.545-60.01 42.566-20.1 16.116-46.074 34.6-63.328 27.682-17.349-6.921-25.976-39.153-59.915-59.82s-93.1-29.768-105.325-51.478 22.373-56.028 43.609-93.949c21.331-37.921 29.2-79.35 53.563-96.793 24.459-17.444 65.414-10.9 103.9-6.921 38.396 3.982 74.326 5.404 89.965 26.829z"
+								transform="translate(217.489 188.626)" />
+						</svg>
+					</div>
+					<div class="text-light container text-center" style="margin-bottom: 10px;">
+						<h2 class="mb-0">Let us find the study group that suits you.</h2>
+					</div>
+					 <div class="footer__cta_action">
+						<a href="{{ .Site.Params.androidAppLink }}" class="btn btn-store" target="_blank">
+							<span class="fa fa-android fa-3x pull-left"></span>
+							<span class="btn-label">GET IT ON</span>
+							<span class="btn-caption">Google Play</span>
+						</a>
+						<a href="{{ .Site.Params.iosAppLink }}" class="btn btn-store" target="_blank">
+								<span class="fa fa-apple fa-3x pull-left"></span>
+								<span class="btn-label">Download on the</span>
+								<span class="btn-caption">App Store</span>
+						</a>
+					</div>
+					<!-- <div class="text-light container text-center" > -->
+					<!-- 	<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe9aZRCOPtCV5a06K9PpN6YDN73ZAgptC9VvwLRszIMcPp4Dw/viewform?embedded=true" width="100%" height="1000px" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> -->
+					<!-- </div> -->
+				</div>
+			</div>
+		</div>
+		<div class="row" style="padding: 15px;"></div>
+		<div class="row footer__footer">
+			<div class="col-lg-6">
+				<div class="footer__footer_copy text-light">
+
+					<p><a class="text-light" href="/privacy_policy/">Privacy Policy</a> | <a class="text-light" href="/support/">Support</a> | <a class="text-light" href="/community-guidelines/">Community guidelines</a> | <a class="text-light" href="/delete-account/">Delete account</a> | {{ .Site.Params.copyright }}</p>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="footer__footer_social">
+					<ul class="unstyle-list">
+						{{ $social := .Site.Params.social }}
+						{{ range $social }}
+						<li class="d-inline-block mx-2"><a class="text-light" target="_blank" href="{{ .url }}"><i
+									class="fa {{ .icon }}"></i></a>
+						</li>
+						{{ end }}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ .Site.Params.map.APIkey }}&libraries=geometry"></script>
+<script src="{{ "plugins/jQuery/jquery.min.js" | absURL }}"></script>
+<script src="{{ "plugins/bootstrap/bootstrap.min.js" | absURL }}"></script>
+<script src="{{ "plugins/slick/slick.min.js" | absURL }}"></script>
+<script src="{{ "plugins/waypoint/jquery.waypoints.min.js" | absURL }}"></script>
+<script src="{{ "plugins/magnafic-popup/jquery.magnific-popup.min.js" | absURL }}"></script>
+<script src="{{ "plugins/tweenmax/TweenMax.min.js" | absURL }}"></script>
+<script src="{{ "plugins/imagesloaded/imagesloaded.min.js" | absURL }}"></script>
+<script src="{{ "plugins/masonry/masonry.min.js" | absURL }}"></script>
+{{ $formhandler := resources.Get "js/form-handler.js" | minify }}
+<script src="{{ $formhandler.Permalink }}"></script>
+{{ $script := resources.Get "js/script.js" | minify }}
+<script src="{{ $script.Permalink }}"></script>

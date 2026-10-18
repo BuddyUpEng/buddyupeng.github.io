@@ -25,6 +25,15 @@ name = "Contact Us"
 url = "contact"
 weight = 5
 
+[[menu.main]]
+name = "Support"
+url = "support/"
+weight = 6
+[[menu.main]]
+name = "Delete account"
+url = "delete-account/"
+weight = 7
+
 
 [params]
 androidAppLink = "https://play.google.com/store/apps/details?id=com.paddy.buddysco"
